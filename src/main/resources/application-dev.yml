@@ -1,0 +1,50 @@
+#容器配置
+server:
+  port: ${random.int[1024,9999]}
+  servlet:
+    context-path: /etl/worker
+
+#etl数据源配置
+etl:
+  log:
+    datasource:
+      name: bigdata_etl
+      type: Oracle
+      driverClass: oracle.jdbc.driver.OracleDriver
+      access: Native
+      host: localhost
+      port: 1521
+      db: orcl
+      username: bigdata_etl
+      password: 123456
+  repository:
+    username: admin
+    password: admin
+  master:
+    host: 127.0.0.1
+    port: 8080
+  worker:
+    name: 本机
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #暴露所有端点 默认是info和health
+  endpoint:
+    health:
+      show-details: always #默认是nevere
+
+
+
+
+#management:
+##  endpoints:
+#  #    web:
+#  #      exposure:
+#  #        include: "*"
+#    endpoint:
+#      health:
+#        # 详细信息显示给所有用户。
+#        show-details: always
+

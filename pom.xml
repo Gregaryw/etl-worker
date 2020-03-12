@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.2.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.dk</groupId>
+	<artifactId>etl-worker</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>etl-worker</name>
+	<description>东方电科数据采集中间件</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<kettle.version>8.2.0.0-342</kettle.version>
+		<mysql-connector.version>5.1.41</mysql-connector.version>
+		<oracle.version>11.2.0.1.0</oracle.version>
+		<commons-io.version>2.2</commons-io.version>
+		<druid.version>1.1.19</druid.version>
+		<commons-vfs2.version>2.2</commons-vfs2.version>
+		<commons-codec.version>1.10</commons-codec.version>
+		<guava.version>17.0</guava.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<fastjson.version>1.2.37</fastjson.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+
+		<!-- kettle相关jar包 -->
+		<dependency>
+			<groupId>pentaho-kettle</groupId>
+			<artifactId>kettle-core</artifactId>
+			<version>${kettle.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>pentaho-kettle</groupId>
+			<artifactId>kettle-engine</artifactId>
+			<version>${kettle.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>pentaho-kettle</groupId>
+			<artifactId>metastore</artifactId>
+			<version>${kettle.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-vfs2</artifactId>
+			<version>${commons-vfs2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons-lang.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+		<!-- kettle jar包结束 -->
+
+		<!--引入oracle依赖包-->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>${oracle.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-connector.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!--fork :  如果没有该项配置，肯定devtools不会起作用，即应用不会restart -->
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
